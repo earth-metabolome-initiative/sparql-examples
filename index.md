@@ -8,7 +8,7 @@ In this github pages we have a HTML rendering for all them.
 
  * [Bgee](./examples/Bgee/)
  * [Cellosaurus](./examples/Cellosaurus)
- * [dbgi](./examples/dbgi/)
+ * [EMI](./examples/emi/)
  * [GlyConnect](./examples/GlyConnect/)
  * [HAMAP](./examples/HAMAP/)
  * [MetaNetX](./examples/MetaNetX/)
