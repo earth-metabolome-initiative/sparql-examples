@@ -6,7 +6,9 @@ This website is fully inspired by the [sparql-examples](https://github.com/sib-s
 In this github pages we have a HTML rendering for all them.
 
  * [emi](./examples/emi/)
+ * [ENPKG](./examples/ENPKG/)
  * [MetaNetX](./examples/MetaNetX/)
+ * [METRINKG](./examples/METRINKG/)
  * [UniProt](./examples/UniProt/)
 
 We also collect [some basic statistics on the different SPARQL features in use](./examples/algebra-statistics.md)
