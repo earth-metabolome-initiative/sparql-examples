@@ -1,7 +1,7 @@
 name: Add SPARQL query example
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
 
 permissions:
   issues: write
@@ -13,7 +13,9 @@ permissions:
 jobs:
   add_example:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.labels.*.name, 'add-example')
+    if: >
+      contains(github.event.issue.labels.*.name, 'add-example') ||
+      (github.event.action == 'labeled' && github.event.label.name == 'add-example')
 
     steps:
     - name: Check out repository
