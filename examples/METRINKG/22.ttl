@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:022 a sh:SPARQLExecutable,
+ex:22 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Retrieve data of 4 traits in leaf economics spectrum."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

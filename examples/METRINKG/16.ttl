@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:016 a sh:SPARQLExecutable,
+ex:16 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "List of possible natural locations of plants, which produce  senkyunolide (wd:Q27251426)  which is a thalide for cerebral disorders (https://doi.org/10.3390/molecules28083636)."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

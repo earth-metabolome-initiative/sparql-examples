@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:006 a sh:SPARQLExecutable,
+ex:6 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Search spectrally related features with and within the VGF151_E05 sample of a datura stramonium through counts of common peaks and loss. Return their species, family and genus names"@en ;
     sh:prefixes _:sparql_examples_prefixes ;

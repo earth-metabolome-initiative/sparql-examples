@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:017 a sh:SPARQLExecutable,
+ex:17 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "List metabolites of plants that interact with plant parasite moth Orgyia postica (wd:Q7102162) ."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

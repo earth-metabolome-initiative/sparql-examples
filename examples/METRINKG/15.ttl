@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:015 a sh:SPARQLExecutable,
+ex:15 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "List of possible natural locations of organisms, which produce Bahamaolide A,  (wd:Q75068439) which is an antifungal (https://doi.org/10.1021/np3001915)."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

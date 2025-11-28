@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:012 a sh:SPARQLExecutable,
+ex:12 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "List traits of all species which have an IUCN status (wdt:P141) of near threatened (wd:Q719675)."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

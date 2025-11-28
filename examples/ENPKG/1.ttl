@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#>.
 
-ex:001 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable;
+ex:1 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable;
   rdfs:comment "Count the number of features with the same ISDB and SIRIUS annotations"@en;
   sh:prefixes _:sparql_examples_prefixes;
   sh:select """PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>

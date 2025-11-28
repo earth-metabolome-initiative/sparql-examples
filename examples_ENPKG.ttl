@@ -23,41 +23,41 @@ log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
 log4j: Setting property [conversionPattern] to [%t %d{yy-MM-dd HH:mm:ss Z} %c%n  %p: %m%n].
 log4j: Adding appender named [console] to category [root].
 
-_:genid-b53caba759a74595968267da79ab6a294-enpkg_sparql_examples_prefixes a <http://www.w3.org/2002/07/owl#Ontology>;
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb83-enpkg_sparql_examples_prefixes a <http://www.w3.org/2002/07/owl#Ontology>;
   <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/ns/shacl#>;
-  <http://www.w3.org/ns/shacl#declare> _:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_enpkg,
-    _:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_npc, _:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_wgs,
-    _:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_wd, _:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_wdt,
-    _:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_prov .
+  <http://www.w3.org/ns/shacl#declare> _:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_enpkg,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_npc, _:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_wgs,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_wd, _:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_wdt,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_prov .
 
-_:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_enpkg <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_enpkg <http://www.w3.org/ns/shacl#prefix>
     "enpkg";
   <http://www.w3.org/ns/shacl#namespace> "https://enpkg.commons-lab.org/kg/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_npc <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_npc <http://www.w3.org/ns/shacl#prefix>
     "npc";
   <http://www.w3.org/ns/shacl#namespace> "https://w3id.org/emi/npc#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_wgs <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_wgs <http://www.w3.org/ns/shacl#prefix>
     "wgs";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/2003/01/geo/wgs84_pos#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_wd <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_wd <http://www.w3.org/ns/shacl#prefix>
     "wd";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/entity/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_wdt <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_wdt <http://www.w3.org/ns/shacl#prefix>
     "wdt";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/prop/direct/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a294-prefix_enpkg_prov <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb83-prefix_enpkg_prov <http://www.w3.org/ns/shacl#prefix>
     "prov";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/ns/prov#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/012> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
+<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/9> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
     <http://www.w3.org/ns/shacl#SPARQLSelectExecutable>;
   <http://www.w3.org/2000/01/rdf-schema#comment> "Which samples have features annotated as Aspidosperma_type alkaloids by CANOPUS with a probability score above 0.5, ordered by the decreasing count of features?"@en;
-  <http://www.w3.org/ns/shacl#prefixes> _:genid-b53caba759a74595968267da79ab6a297-sparql_examples_prefixes;
+  <http://www.w3.org/ns/shacl#prefixes> _:genid-f40e91a0d7bd42d68e29ddc617c74cb87-sparql_examples_prefixes;
   <http://www.w3.org/ns/shacl#select> """PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
@@ -72,10 +72,10 @@ WHERE
   <https://purl.expasy.org/sparql-examples/ontology#file_path> "../sparql-examples/examples/ENPKG/9.ttl";
   <https://purl.expasy.org/sparql-examples/ontology#project> "ENPKG" .
 
-<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/001> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
+<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/1> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
     <http://www.w3.org/ns/shacl#SPARQLSelectExecutable>;
   <http://www.w3.org/2000/01/rdf-schema#comment> "Count the number of features with the same ISDB and SIRIUS annotations"@en;
-  <http://www.w3.org/ns/shacl#prefixes> _:genid-b53caba759a74595968267da79ab6a2910-sparql_examples_prefixes;
+  <http://www.w3.org/ns/shacl#prefixes> _:genid-f40e91a0d7bd42d68e29ddc617c74cb810-sparql_examples_prefixes;
   <http://www.w3.org/ns/shacl#select> """PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
@@ -100,10 +100,10 @@ WHERE
   <https://purl.expasy.org/sparql-examples/ontology#file_path> "../sparql-examples/examples/ENPKG/1.ttl";
   <https://purl.expasy.org/sparql-examples/ontology#project> "ENPKG" .
 
-<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/002> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
+<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/2> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
     <http://www.w3.org/ns/shacl#SPARQLSelectExecutable>;
   <http://www.w3.org/2000/01/rdf-schema#comment> "Count the number of features annotated as aspidosperma type alkaloids by CANOPUS (p>0.5) in the different samples"@en;
-  <http://www.w3.org/ns/shacl#prefixes> _:genid-b53caba759a74595968267da79ab6a2913-sparql_examples_prefixes;
+  <http://www.w3.org/ns/shacl#prefixes> _:genid-f40e91a0d7bd42d68e29ddc617c74cb813-sparql_examples_prefixes;
   <http://www.w3.org/ns/shacl#select> """PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
 PREFIX enpkgmodule: <https://enpkg.commons-lab.org/module/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -154,64 +154,10 @@ WHERE
   <https://purl.expasy.org/sparql-examples/ontology#file_path> "../sparql-examples/examples/ENPKG/2.ttl";
   <https://purl.expasy.org/sparql-examples/ontology#project> "ENPKG" .
 
-_:genid-b53caba759a74595968267da79ab6a293-sparql_examples_prefixes a <http://www.w3.org/2002/07/owl#Ontology>;
-  <http://www.w3.org/2000/01/rdf-schema#comment> "This is a collection of SPARQL queries that are examples for use on different websites.";
-  <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/ns/shacl#>;
-  <http://www.w3.org/ns/shacl#declare> _:genid-b53caba759a74595968267da79ab6a293-prefix_up,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_keywords, _:genid-b53caba759a74595968267da79ab6a293-prefix_uniprotkb,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_taxon, _:genid-b53caba759a74595968267da79ab6a293-prefix_ec,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_rdf, _:genid-b53caba759a74595968267da79ab6a293-prefix_rdfs,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_skos, _:genid-b53caba759a74595968267da79ab6a293-prefix_owl,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_bibo, _:genid-b53caba759a74595968267da79ab6a293-prefix_dc,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_xsd, _:genid-b53caba759a74595968267da79ab6a293-prefix_faldo,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_prov, _:genid-b53caba759a74595968267da79ab6a293-prefix_GO,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_allie, _:genid-b53caba759a74595968267da79ab6a293-prefix_orthodbGroup,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_orthodb, _:genid-b53caba759a74595968267da79ab6a293-prefix_sio,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_identifiers, _:genid-b53caba759a74595968267da79ab6a293-prefix_ensembl,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_ensembltranscript, _:genid-b53caba759a74595968267da79ab6a293-prefix_ensemblexon,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_ensemblprotein, _:genid-b53caba759a74595968267da79ab6a293-prefix_ensemblterms,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_schema, _:genid-b53caba759a74595968267da79ab6a293-prefix_chembl,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_chebi, _:genid-b53caba759a74595968267da79ab6a293-prefix_chebihash,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_chebislash, _:genid-b53caba759a74595968267da79ab6a293-prefix_rhea,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_pubmed, _:genid-b53caba759a74595968267da79ab6a293-prefix_mesh,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_sh, _:genid-b53caba759a74595968267da79ab6a293-prefix_slm,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_codao, _:genid-b53caba759a74595968267da79ab6a293-prefix_glycan,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_glyconnect, _:genid-b53caba759a74595968267da79ab6a293-prefix_uberon,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_patent, _:genid-b53caba759a74595968267da79ab6a293-prefix_mnet,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_mnx, _:genid-b53caba759a74595968267da79ab6a293-prefix_sp,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_eunis_species, _:genid-b53caba759a74595968267da79ab6a293-prefix_foaf,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_genex, _:genid-b53caba759a74595968267da79ab6a293-prefix_lscr,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_vg, _:genid-b53caba759a74595968267da79ab6a293-prefix_obo,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_orth, _:genid-b53caba759a74595968267da79ab6a293-prefix_insdc,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_insdcschema, _:genid-b53caba759a74595968267da79ab6a293-prefix_wd,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_wdt, _:genid-b53caba759a74595968267da79ab6a293-prefix_wikibase,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_p, _:genid-b53caba759a74595968267da79ab6a293-prefix_ps,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_pq, _:genid-b53caba759a74595968267da79ab6a293-prefix_pr,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_sachem, _:genid-b53caba759a74595968267da79ab6a293-prefix_lipidmaps,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_eco, _:genid-b53caba759a74595968267da79ab6a293-prefix_dcterms,
-    _:genid-b53caba759a74595968267da79ab6a293-prefix_busco, _:genid-b53caba759a74595968267da79ab6a293-prefix_oboInOwl,
-    _:genid-b53caba759a74595968267da79ab6a293-81367EEC48BC951DB62857ABE3149721 .
-
-_:genid-b53caba759a74595968267da79ab6a293-prefix_up <http://www.w3.org/ns/shacl#prefix>
-    "up";
-  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/core/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
-
-_:genid-b53caba759a74595968267da79ab6a293-prefix_keywords <http://www.w3.org/ns/shacl#prefix>
-    "keywords";
-  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/keywords/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
-
-_:genid-b53caba759a74595968267da79ab6a293-prefix_uniprotkb <http://www.w3.org/ns/shacl#prefix>
-    "uniprotkb";
-  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/uniprot/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
-
-_:genid-b53caba759a74595968267da79ab6a293-prefix_taxon <http://www.w3.org/ns/shacl#prefix>
-    "taxon";
-  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/taxonomy/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
-
-<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/003> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
+<https://kg.earthmetabolome.org/metrin/api/.well-known/examples/3> a <http://www.w3.org/ns/shacl#SPARQLExecutable>,
     <http://www.w3.org/ns/shacl#SPARQLSelectExecutable>;
   <http://www.w3.org/2000/01/rdf-schema#comment> "Among the structural annotations in Tabernaemontana coffeoides seeds extract, get the ones that contain an Aspidospermidine scaffold scaffold."@en;
-  <http://www.w3.org/ns/shacl#prefixes> _:genid-b53caba759a74595968267da79ab6a2916-sparql_examples_prefixes;
+  <http://www.w3.org/ns/shacl#prefixes> _:genid-f40e91a0d7bd42d68e29ddc617c74cb816-sparql_examples_prefixes;
   <http://www.w3.org/ns/shacl#select> """PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
@@ -246,250 +192,304 @@ WHERE
   <https://purl.expasy.org/sparql-examples/ontology#file_path> "../sparql-examples/examples/ENPKG/3.ttl";
   <https://purl.expasy.org/sparql-examples/ontology#project> "ENPKG" .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_ec <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-sparql_examples_prefixes a <http://www.w3.org/2002/07/owl#Ontology>;
+  <http://www.w3.org/2000/01/rdf-schema#comment> "This is a collection of SPARQL queries that are examples for use on different websites.";
+  <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/ns/shacl#>;
+  <http://www.w3.org/ns/shacl#declare> _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_up,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_keywords, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_uniprotkb,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_taxon, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ec,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_rdf, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_rdfs,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_skos, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_owl,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_bibo, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_dc,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_xsd, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_faldo,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_prov, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_GO,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_allie, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_orthodbGroup,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_orthodb, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sio,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_identifiers, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensembl,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensembltranscript, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensemblexon,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensemblprotein, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensemblterms,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_schema, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chembl,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chebi, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chebihash,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chebislash, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_rhea,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_pubmed, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_mesh,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sh, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_slm,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_codao, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_glycan,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_glyconnect, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_uberon,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_patent, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_mnet,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_mnx, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sp,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_eunis_species, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_foaf,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_genex, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_lscr,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_vg, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_obo,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_orth, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_insdc,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_insdcschema, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_wd,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_wdt, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_wikibase,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_p, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ps,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_pq, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_pr,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sachem, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_lipidmaps,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_eco, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_dcterms,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_busco, _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_oboInOwl,
+    _:genid-f40e91a0d7bd42d68e29ddc617c74cb84-81367EEC48BC951DB62857ABE3149721 .
+
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_up <http://www.w3.org/ns/shacl#prefix>
+    "up";
+  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/core/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_keywords <http://www.w3.org/ns/shacl#prefix>
+    "keywords";
+  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/keywords/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_uniprotkb <http://www.w3.org/ns/shacl#prefix>
+    "uniprotkb";
+  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/uniprot/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_taxon <http://www.w3.org/ns/shacl#prefix>
+    "taxon";
+  <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/taxonomy/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ec <http://www.w3.org/ns/shacl#prefix>
     "ec";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.uniprot.org/enzyme/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_rdf <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_rdf <http://www.w3.org/ns/shacl#prefix>
     "rdf";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_rdfs <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_rdfs <http://www.w3.org/ns/shacl#prefix>
     "rdfs";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/2000/01/rdf-schema#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_skos <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_skos <http://www.w3.org/ns/shacl#prefix>
     "skos";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/2004/02/skos/core#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_owl <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_owl <http://www.w3.org/ns/shacl#prefix>
     "owl";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/2002/07/owl#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_bibo <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_bibo <http://www.w3.org/ns/shacl#prefix>
     "bibo";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.org/ontology/bibo/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_dc <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_dc <http://www.w3.org/ns/shacl#prefix>
     "dc";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.org/dc/terms/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_xsd <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_xsd <http://www.w3.org/ns/shacl#prefix>
     "xsd";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/2001/XMLSchema#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_faldo <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_faldo <http://www.w3.org/ns/shacl#prefix>
     "faldo";
   <http://www.w3.org/ns/shacl#namespace> "http://biohackathon.org/resource/faldo#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_prov <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_prov <http://www.w3.org/ns/shacl#prefix>
     "prov";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/ns/prov#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_GO <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_GO <http://www.w3.org/ns/shacl#prefix>
     "GO";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.obolibrary.org/obo/GO_"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_allie <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_allie <http://www.w3.org/ns/shacl#prefix>
     "allie";
   <http://www.w3.org/ns/shacl#namespace> "http://allie.dbcls.jp/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_orthodbGroup <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_orthodbGroup <http://www.w3.org/ns/shacl#prefix>
     "orthodbGroup";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.orthodb.org/odbgroup/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_orthodb <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_orthodb <http://www.w3.org/ns/shacl#prefix>
     "orthodb";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.orthodb.org/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_sio <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sio <http://www.w3.org/ns/shacl#prefix>
     "sio";
   <http://www.w3.org/ns/shacl#namespace> "http://semanticscience.org/resource/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_identifiers <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_identifiers <http://www.w3.org/ns/shacl#prefix>
     "identifiers";
   <http://www.w3.org/ns/shacl#namespace> "http://identifiers.org/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_ensembl <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensembl <http://www.w3.org/ns/shacl#prefix>
     "ensembl";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.ebi.ac.uk/resource/ensembl/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_ensembltranscript <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensembltranscript <http://www.w3.org/ns/shacl#prefix>
     "ensembltranscript";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.ebi.ac.uk/resource/ensembl.transcript/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_ensemblexon <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensemblexon <http://www.w3.org/ns/shacl#prefix>
     "ensemblexon";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.ebi.ac.uk/resource/ensembl.exon/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_ensemblprotein <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensemblprotein <http://www.w3.org/ns/shacl#prefix>
     "ensemblprotein";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.ebi.ac.uk/resource/ensembl.protein/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_ensemblterms <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ensemblterms <http://www.w3.org/ns/shacl#prefix>
     "ensemblterms";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.ebi.ac.uk/terms/ensembl/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_schema <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_schema <http://www.w3.org/ns/shacl#prefix>
     "schema";
   <http://www.w3.org/ns/shacl#namespace> "http://schema.org/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_chembl <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chembl <http://www.w3.org/ns/shacl#prefix>
     "cco";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.ebi.ac.uk/terms/chembl#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_chebi <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chebi <http://www.w3.org/ns/shacl#prefix>
     "CHEBI";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.obolibrary.org/obo/CHEBI_"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_chebislash <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chebislash <http://www.w3.org/ns/shacl#prefix>
     "chebislash";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.obolibrary.org/obo/chebi/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_chebihash <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_chebihash <http://www.w3.org/ns/shacl#prefix>
     "chebihash";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.obolibrary.org/obo/chebi#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_rhea <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_rhea <http://www.w3.org/ns/shacl#prefix>
     "rh";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.rhea-db.org/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_pubmed <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_pubmed <http://www.w3.org/ns/shacl#prefix>
     "pubmed";
   <http://www.w3.org/ns/shacl#namespace> "http://rdf.ncbi.nlm.nih.gov/pubmed/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_mesh <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_mesh <http://www.w3.org/ns/shacl#prefix>
     "mesh";
   <http://www.w3.org/ns/shacl#namespace> "http://id.nlm.nih.gov/mesh/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_sh <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sh <http://www.w3.org/ns/shacl#prefix>
     "sh";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/ns/shacl#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_slm <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_slm <http://www.w3.org/ns/shacl#prefix>
     "SWISSLIPID";
   <http://www.w3.org/ns/shacl#namespace> "https://swisslipids.org/rdf/SLM_"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_codao <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_codao <http://www.w3.org/ns/shacl#prefix>
     "codoa";
   <http://www.w3.org/ns/shacl#namesapce> "http://purl.glycoinfo.org/ontology/codao#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_glycan <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_glycan <http://www.w3.org/ns/shacl#prefix>
     "glycan";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.jp/bio/12/glyco/glycan#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_glyconnect <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_glyconnect <http://www.w3.org/ns/shacl#prefix>
     "glyconnect";
   <http://www.w3.org/ns/shacl#namespace> "https://purl.org/glyconnect/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_uberon <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_uberon <http://www.w3.org/ns/shacl#prefix>
     "uberon";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.obolibrary.org/obo/uo#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_patent <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_patent <http://www.w3.org/ns/shacl#prefix>
     "patent";
   <http://www.w3.org/ns/shacl#namespace> "http://data.epo.org/linked-data/def/patent/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_mnet <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_mnet <http://www.w3.org/ns/shacl#prefix>
     "mnet";
   <http://www.w3.org/ns/shacl#namespace> "https://rdf.metanetx.org/mnet/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_mnx <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_mnx <http://www.w3.org/ns/shacl#prefix>
     "mnx";
   <http://www.w3.org/ns/shacl#namespace> "https://rdf.metanetx.org/schema/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_sp <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sp <http://www.w3.org/ns/shacl#prefix>
     "sp";
   <http://www.w3.org/ns/shacl#namespace> "http://spinrdf.org/sp#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_eunis_species <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_eunis_species <http://www.w3.org/ns/shacl#prefix>
     "eunisSpecies";
   <http://www.w3.org/ns/shacl#namespace> "http://eunis.eea.europa.eu/rdf/species-schema.rdf#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_foaf <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_foaf <http://www.w3.org/ns/shacl#prefix>
     "foaf";
   <http://www.w3.org/ns/shacl#namespace> "http://xmlns.com/foaf/0.1/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_genex <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_genex <http://www.w3.org/ns/shacl#prefix>
     "genex";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.org/genex#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_lscr <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_lscr <http://www.w3.org/ns/shacl#prefix>
     "lscr";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.org/lscr#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_vg <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_vg <http://www.w3.org/ns/shacl#prefix>
     "vg";
   <http://www.w3.org/ns/shacl#namespace> "http://biohackathon.org/resource/vg#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_obo <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_obo <http://www.w3.org/ns/shacl#prefix>
     "obo";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.obolibrary.org/obo/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_orth <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_orth <http://www.w3.org/ns/shacl#prefix>
     "orth";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.org/net/orth#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_insdc <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_insdc <http://www.w3.org/ns/shacl#prefix>
     "insdc";
   <http://www.w3.org/ns/shacl#namespace> "http://identifiers.org/insdc/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_insdcschema <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_insdcschema <http://www.w3.org/ns/shacl#prefix>
     "insdcschema";
   <http://www.w3.org/ns/shacl#namespace> "http://ddbj.nig.ac.jp/ontologies/nucleotide/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_wd <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_wd <http://www.w3.org/ns/shacl#prefix>
     "wd";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/entity/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_wdt <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_wdt <http://www.w3.org/ns/shacl#prefix>
     "wdt";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/prop/direct/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_wikibase <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_wikibase <http://www.w3.org/ns/shacl#prefix>
     "wikibase";
   <http://www.w3.org/ns/shacl#namespace> "http://wikiba.se/ontology#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_p <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_p <http://www.w3.org/ns/shacl#prefix>
     "p";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/prop/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_ps <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_ps <http://www.w3.org/ns/shacl#prefix>
     "ps";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/prop/statement/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_pq <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_pq <http://www.w3.org/ns/shacl#prefix>
     "pq";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/prop/qualifier/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_pr <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_pr <http://www.w3.org/ns/shacl#prefix>
     "pr";
   <http://www.w3.org/ns/shacl#namespace> "http://www.wikidata.org/prop/reference/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_sachem <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_sachem <http://www.w3.org/ns/shacl#prefix>
     "sachem";
   <http://www.w3.org/ns/shacl#namespace> "http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_lipidmaps <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_lipidmaps <http://www.w3.org/ns/shacl#prefix>
     "lipidmaps";
   <http://www.w3.org/ns/shacl#namespace> "https://www.lipidmaps.org/rdf/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_eco <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_eco <http://www.w3.org/ns/shacl#prefix>
     "ECO";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.obolibrary.org/obo/ECO_"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_dcterms <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_dcterms <http://www.w3.org/ns/shacl#prefix>
     "dcterms";
   <http://www.w3.org/ns/shacl#namespace> "http://purl.org/dc/terms/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_busco <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_busco <http://www.w3.org/ns/shacl#prefix>
     "busco";
   <http://www.w3.org/ns/shacl#namespace> "http://busco.ezlab.org/schema#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-prefix_oboInOwl <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-prefix_oboInOwl <http://www.w3.org/ns/shacl#prefix>
     "oboInOwl";
   <http://www.w3.org/ns/shacl#namespace> "http://www.geneontology.org/formats/oboInOwl#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-_:genid-b53caba759a74595968267da79ab6a293-81367EEC48BC951DB62857ABE3149721 <http://www.w3.org/ns/shacl#prefix>
+_:genid-f40e91a0d7bd42d68e29ddc617c74cb84-81367EEC48BC951DB62857ABE3149721 <http://www.w3.org/ns/shacl#prefix>
     "sd";
   <http://www.w3.org/ns/shacl#namespace> "http://www.w3.org/ns/sparql-service-description#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .

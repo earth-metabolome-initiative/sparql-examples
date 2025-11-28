@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#>.
 
-ex:002 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable;
+ex:2 a sh:SPARQLExecutable, sh:SPARQLSelectExecutable;
   rdfs:comment "Count the number of features annotated as aspidosperma type alkaloids by CANOPUS (p>0.5) in the different samples"@en;
   sh:prefixes _:sparql_examples_prefixes;
   sh:select """PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>

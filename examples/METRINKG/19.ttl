@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:019 a sh:SPARQLExecutable,
+ex:19 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "A list of interactions depicting connections between parasatoids harmful for insects living as parasites on plants."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:014 a sh:SPARQLExecutable,
+ex:14 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "List traits (and their values) of plants producing Diterpenoids"@en ;
     sh:prefixes _:sparql_examples_prefixes ;

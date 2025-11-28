@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:020 a sh:SPARQLExecutable,
+ex:20 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Natural producers (and their interactions that might be useful in agriculture) of Onpordopicrin (wd:Q27107580), which might exhibit antimicrobial and cytotoxic activities, especially against human-derived macrophages and against epidermoid carcinoma cells. There is limited scientific evidence to support these claims (https://www.sciencedirect.com/science/article/abs/pii/S138614251500685X)."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

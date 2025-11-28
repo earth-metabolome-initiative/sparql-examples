@@ -5,7 +5,7 @@
 @prefix spex: <https://purl.expasy.org/sparql-examples/ontology#>.
 
 
-ex:003 a sh:SPARQLExecutable,
+ex:3 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Among the structural annotations in Tabernaemontana coffeoides seeds extract, get the ones that contain an Aspidospermidine scaffold scaffold."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

@@ -3,7 +3,7 @@
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 
-ex:004 a sh:SPARQLExecutable,
+ex:4 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "For features from Melochia umbellata in positive ionization mode with SIRIUS annotations, get the ones for which a feature in negative ionization mode with the same retention time (± 3 sec) has the same SIRIUS annotation (2D InChIKey)."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

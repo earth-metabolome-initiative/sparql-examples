@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:007 a sh:SPARQLExecutable,
+ex:7 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Show chemical structures in Melochia umbellata extracts with structural annotations where the cosmic score is greater than 0.5 and the zodiac score is less than 0.8. For ISDB annotations, consider taxon scores greater than or equal to 6"@en ;
     sh:prefixes _:sparql_examples_prefixes ;

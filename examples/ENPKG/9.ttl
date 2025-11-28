@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:012 a sh:SPARQLExecutable,
+ex:9 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Which samples have features annotated as Aspidosperma_type alkaloids by CANOPUS with a probability score above 0.5, ordered by the decreasing count of features?"@en ;
     sh:prefixes _:sparql_examples_prefixes ;
