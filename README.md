@@ -128,6 +128,19 @@ java -jar sparql-examples-utils.jar convert -i examples/ -p all -f ttl > example
 sparql --data examples_all.ttl "SELECT ?query (GROUP_CONCAT(?target ; separator=', ') AS ?targets) WHERE { ?query <https://schema.org/target> ?target } GROUP BY ?query HAVING (COUNT(DISTINCT ?target) > 1) "
 ```
 
+## NOTES 
+
+Apparently the `spaqrl-example-utils` are shipped with log config set to true. To be investigated.
+For now, we create the [[log4j.properties]] and can run 
+
+```bash
+java -Dlog4j.configuration=file:./log4j.properties \
+  -jar target/sparql-examples-utils-2.0.10-uber.jar \
+  convert --input-directory=../sparql-examples/examples -p METRINKG -f ttl > test.ttl
+```
+
+
+
 ## How to cite this work
 
 If you reuse any part of this work, please cite [the GigaScience paper](https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf045/8133871):

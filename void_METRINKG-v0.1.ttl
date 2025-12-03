@@ -1,0 +1,29 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix : <http://www.w3.org/ns/sparql-service-description#> .
+@prefix void_ext: <http://ldf.fi/void-ext#> .
+@prefix formats: <http://www.w3.org/ns/formats/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://kg.earthmetabolome.org/metrin/api/> a :Service;
+  :defaultDataset <https://kg.earthmetabolome.org/metrin/api/#sparql-default-dataset>;
+  :endpoint <https://kg.earthmetabolome.org/metrin/api/>;
+  :resultFormat formats:SPARQL_Results_CSV, formats:SPARQL_Results_JSON, formats:N-Triples,
+    formats:RDF_XML, formats:SPARQL_Results_TSV, formats:Turtle, formats:SPARQL_Results_XML;
+  :supportedLanguage :SPARQL11Query;
+  :feature :UnionDefaultGraph, :BasicFederatedQuery;
+  :availableGraphs <https://kg.earthmetabolome.org/metrin/api/.well-known/void##sparql-graph-collection> .
+
+<https://kg.earthmetabolome.org/metrin/api/#sparql-default-dataset> a :Dataset;
+  :defaultGraph <https://kg.earthmetabolome.org/metrin/api/.well-known/void##sparql-default-graph> .
+
+<https://kg.earthmetabolome.org/metrin/api/.well-known/void##sparql-default-graph>
+  a :Graph;
+  void:distinctObjects "99723493"^^xsd:long;
+  void_ext:distinctLiterals "19197492"^^xsd:long;
+  void_ext:distinctIRIReferenceObjects "80526001"^^xsd:long;
+  void:distinctSubjects "72839309"^^xsd:long;
+  void_ext:distinctIRIReferenceSubjects "71581682"^^xsd:long;
+  void_ext:distinctBlankNodeSubjects "1257627"^^xsd:long .
