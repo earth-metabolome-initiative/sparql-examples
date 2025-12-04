@@ -128,6 +128,21 @@ java -jar sparql-examples-utils.jar convert -i examples/ -p all -f ttl > example
 sparql --data examples_all.ttl "SELECT ?query (GROUP_CONCAT(?target ; separator=', ') AS ?targets) WHERE { ?query <https://schema.org/target> ?target } GROUP BY ?query HAVING (COUNT(DISTINCT ?target) > 1) "
 ```
 
+##  Format queries  for Qlever UI import
+
+To format the queries in a given directory for import as a csv file in the Qlever-UI tool, use the `ttl_to_csv.py` script. For example, to format all queries in the `examples/METRINKG` directory and add a prefix id in the title, run:
+
+```bash
+python scripts/ttl_to_csv.py --prefix-id-in-title examples/METRINKG -o outputs/metrinkg_examples_with_ids.ttl
+```
+
+The following command will format the same queries without adding the prefix id in the title but rather in the `id` column of the resulting csv.
+
+```bash
+python scripts/ttl_to_csv.py examples/METRINKG -o outputs/metrinkg_examples.csv
+```
+
+
 ## NOTES 
 
 Apparently the `spaqrl-example-utils` are shipped with log config set to true. To be investigated.
