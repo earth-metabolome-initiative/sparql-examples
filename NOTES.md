@@ -47,10 +47,9 @@ Fetch the appropriate Qleverfile.
 For ex (METRINKG)
 
 
-
-
-
+```bash
 qlever get-data
 qlever index --overwrite-existing --parallel-parsing false --stxxl-memory 32G (can take a bunch of time)
 qlever stop (to kill current instance)
 qlever start
+```
