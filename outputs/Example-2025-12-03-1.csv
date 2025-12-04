@@ -1,0 +1,117 @@
+"id","backend","name","query","Structure of sortKey [idcode]","sortKey"
+,"69","A DESCRIBE query","DESCRIBE <https://w3id.org/emi/abox#FFVRRQMGGGTQRH>",,"~"
+,"69","Among the SIRIUS structural annotations from Tabernaemontana coffeoides (Apocynaceae) seeds extract, which ones are reported in the Tabernaemontana genus?","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+
+SELECT DISTINCT ?ik2d ?genus
+WHERE
+    {
+    ?material sosa:hasSample ?extract ;
+        sosa:isSampleOf ?organe .
+    ?organe emi:inTaxon ?wd_sp .
+    ?wd_sp rdfs:label ""tabernaemontana coffeoides"" .
+    ?extract sosa:isFeatureOfInterestOf ?lcms .
+    ?lcms sosa:hasResult ?feature_list .
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature emi:hasAnnotation ?sirius_annotation .
+    ?sirius_annotation a emi:StructuralAnnotation ;
+        prov:wasGeneratedBy ?activity ;
+        emi:hasChemicalStructure ?ik2d .
+    ?activity prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+    ?ik2d emi:hasSMILES ?smiles ;
+        emi:isInChIKey2DOf ?ik .
+    ?ik emi:isInChIKeyOf ?wd_id .
+<TAB>{
+        SELECT DISTINCT ?wd_id ?genus WHERE {
+            ?material sosa:hasSample ?extract ;
+                sosa:isSampleOf ?organe .
+            ?organe emi:inTaxon ?wd_sp .
+            ?wd_sp rdfs:label ""tabernaemontana coffeoides"" .
+           # OPTIONAL {
+                SERVICE <https://query.wikidata.org/sparql> {
+                    ?wd_sp wdt:P225 ?species_name .
+                    ?genus wdt:P31 wd:Q16521 ;
+                        wdt:P105 wd:Q34740 ;
+                        ^wdt:P171* ?wd_sp .
+                    ?childtaxa wdt:P171* ?genus .
+                    ?wd_id wdt:P703 ?childtaxa
+                }
+           # }
+        } LIMIT 100
+    }
+}",,"~"
+,"69","Among the structural annotations from Tabernaemontana coffeoides (Apocynaceae) seeds extract, which ones contain an aspidospermidine substructure?","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT DISTINCT ?ik2d ?smiles
+WHERE {
+    ?extract a emi:ExtractSample ;
+        sosa:isSampleOf* ?organe .
+    ?organe emi:inTaxon ?taxon .
+    ?taxon rdfs:label ""tabernaemontana coffeoides"" .
+    ?extract sosa:isFeatureOfInterestOf ?lcms .
+    ?lcms sosa:hasResult ?feature_list .
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature emi:hasAnnotation ?annotation .
+    ?annotation emi:hasChemicalStructure ?ik2d .
+    ?ik2d a emi:InChIKey2D ;
+        emi:hasSMILES ?smiles ;
+        emi:isInChIKey2DOf ?ik .
+    ?ik emi:isInChIKeyOf ?wd_id .
+    SERVICE <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> {
+        SELECT * WHERE {
+            ?wd_id sachem:substructureSearch [
+                sachem:query ""CCC12CCCN3C1C4(CC3)C(CC2)NC5=CC=CC=C45"" # Aspidospermidine scaffold
+            ] .
+        }
+    }
+}",,"~"
+,"69","test","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT DISTINCT ?feature ?rt ?pm ?feature_opp ?rt_opp ?pm_opp
+WHERE {
+    VALUES ?ppm {
+        ""5""^^xsd:decimal # m/z tolerance
+    }
+    VALUES ?rt_tol {
+        ""0.05""^^xsd:decimal # RT tolerance (minute)
+    }
+    ?sample a emi:ExtractSample ;
+        sosa:isSampleOf* ?organe .
+    ?organe emi:inTaxon ?taxon .
+    ?taxon rdfs:label ""melochia umbellata"" .
+    ?sample sosa:isFeatureOfInterestOf ?lcms .
+    ?lcms a emi:LCMSAnalysisPos ;
+        sosa:hasResult ?feature_list .
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature emi:hasParentMass ?pm ;
+        emi:hasRetentionTime ?rt ;
+        emi:hasAnnotation ?sirius .
+<TAB>?sirius a emi:StructuralAnnotation ;
+        prov:wasGeneratedBy ?activiy .
+    ?activiy prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+    ?sirius emi:hasAdduct ?adduct .
+    FILTER(regex(str(?adduct), ""[M+H]+""))
+    ?sample sosa:isFeatureOfInterestOf ?lcms_opp .
+    ?lcms_opp a emi:LCMSAnalysisNeg ;
+        sosa:hasResult ?feature_list_opp .
+    ?feature_list_opp emi:hasLCMSFeature ?feature_opp .
+<TAB>?feature_opp emi:hasParentMass ?pm_opp ;
+        emi:hasRetentionTime ?rt_opp .
+    FILTER(((?rt - ?rt_tol) < ?rt_opp) && ((?rt + ?rt_tol) > ?rt_opp))
+    FILTER((?pm_opp > ((?pm - 2.014) - ((?ppm * 0.000001) * (?pm - 2.014)))) && (?pm_opp < ((?pm - 2.014) + ((?ppm * 0.000001) * (?pm - 2.014)))))
+}",,"~"

@@ -1,0 +1,953 @@
+"id","backend","name","query","Structure of sortKey [idcode]","sortKey"
+"1","69","Among the SIRIUS structural annotations from Tabernaemontana coffeoides (Apocynaceae) seeds extract, which ones are reported in the Tabernaemontana genus?","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+
+SELECT DISTINCT ?ik2d ?genus
+WHERE
+    {
+    ?material sosa:hasSample ?extract ;
+        sosa:isSampleOf ?organe .
+    ?organe emi:inTaxon ?wd_sp .
+    ?wd_sp rdfs:label ""tabernaemontana coffeoides"" .
+    ?extract sosa:isFeatureOfInterestOf ?lcms .
+    ?lcms sosa:hasResult ?feature_list .
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature emi:hasAnnotation ?sirius_annotation .
+    ?sirius_annotation a emi:StructuralAnnotation ;
+        prov:wasGeneratedBy ?activity ;
+        emi:hasChemicalStructure ?ik2d .
+    ?activity prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+    ?ik2d emi:hasSMILES ?smiles ;
+        emi:isInChIKey2DOf ?ik .
+    ?ik emi:isInChIKeyOf ?wd_id .
+	{
+        SELECT DISTINCT ?wd_id ?genus WHERE {
+            ?material sosa:hasSample ?extract ;
+                sosa:isSampleOf ?organe .
+            ?organe emi:inTaxon ?wd_sp .
+            ?wd_sp rdfs:label ""tabernaemontana coffeoides"" .
+           # OPTIONAL {
+                SERVICE <https://query.wikidata.org/sparql> {
+                    ?wd_sp wdt:P225 ?species_name .
+                    ?genus wdt:P31 wd:Q16521 ;
+                        wdt:P105 wd:Q34740 ;
+                        ^wdt:P171* ?wd_sp .
+                    ?childtaxa wdt:P171* ?genus .
+                    ?wd_id wdt:P703 ?childtaxa
+                }
+           # }
+        } LIMIT 100
+    }
+}","","~"
+"2","69","Among the structural annotations from Tabernaemontana coffeoides (Apocynaceae) seeds extract, which ones contain an aspidospermidine substructure?","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX sachem: <http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT DISTINCT ?ik2d ?smiles
+WHERE {
+    ?extract a emi:ExtractSample ;
+        sosa:isSampleOf* ?organe .
+    ?organe emi:inTaxon ?taxon .
+    ?taxon rdfs:label ""tabernaemontana coffeoides"" .
+    ?extract sosa:isFeatureOfInterestOf ?lcms .
+    ?lcms sosa:hasResult ?feature_list .
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature emi:hasAnnotation ?annotation .
+    ?annotation emi:hasChemicalStructure ?ik2d .
+    ?ik2d a emi:InChIKey2D ;
+        emi:hasSMILES ?smiles ;
+        emi:isInChIKey2DOf ?ik .
+    ?ik emi:isInChIKeyOf ?wd_id .
+    SERVICE <https://idsm.elixir-czech.cz/sparql/endpoint/wikidata> {
+        SELECT * WHERE {
+            ?wd_id sachem:substructureSearch [
+                sachem:query ""CCC12CCCN3C1C4(CC3)C(CC2)NC5=CC=CC=C45"" # Aspidospermidine scaffold
+            ] .
+        }
+    }
+}","","~"
+"3","69","Filter the positive ionization mode features of Melochia umbellate annotated as [M+H]+ by SIRIUS to keep the ones for which a feature in negative ionization mode is detected with the same retention time (± 3 seconds) and a mass corresponding to the [M-H]- adduct (± 5 ppm).","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT DISTINCT ?feature ?rt ?pm ?feature_opp ?rt_opp ?pm_opp
+WHERE {
+    VALUES ?ppm {
+        ""5""^^xsd:decimal # m/z tolerance
+    }
+    VALUES ?rt_tol {
+        ""0.05""^^xsd:decimal # RT tolerance (minute)
+    }
+    ?sample a emi:ExtractSample ;
+        sosa:isSampleOf* ?organe .
+    ?organe emi:inTaxon ?taxon .
+    ?taxon rdfs:label ""melochia umbellata"" .
+    ?sample sosa:isFeatureOfInterestOf ?lcms .
+    ?lcms a emi:LCMSAnalysisPos ;
+        sosa:hasResult ?feature_list .
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature emi:hasParentMass ?pm ;
+        emi:hasRetentionTime ?rt ;
+        emi:hasAnnotation ?sirius .
+	?sirius a emi:StructuralAnnotation ;
+        prov:wasGeneratedBy ?activiy .
+    ?activiy prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+    ?sirius emi:hasAdduct ?adduct .
+    FILTER(regex(str(?adduct), ""[M+H]+""))
+    ?sample sosa:isFeatureOfInterestOf ?lcms_opp .
+    ?lcms_opp a emi:LCMSAnalysisNeg ;
+        sosa:hasResult ?feature_list_opp .
+    ?feature_list_opp emi:hasLCMSFeature ?feature_opp .
+	?feature_opp emi:hasParentMass ?pm_opp ;
+        emi:hasRetentionTime ?rt_opp .
+    FILTER(((?rt - ?rt_tol) < ?rt_opp) && ((?rt + ?rt_tol) > ?rt_opp))
+    FILTER((?pm_opp > ((?pm - 2.014) - ((?ppm * 0.000001) * (?pm - 2.014)))) && (?pm_opp < ((?pm - 2.014) + ((?ppm * 0.000001) * (?pm - 2.014)))))
+}","","~"
+"4","69","For features from Melochia umbellata in positive ionization mode with SIRIUS annotations, get the ones for which a feature in negative ionization mode with the same retention time (± 3 sec) has the same SIRIUS annotation (2D InChIKey).","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT DISTINCT ?feature ?feature_opp ?ik2d ?rt ?rt_opp
+WHERE {
+    VALUES ?rt_tol {
+        ""0.05""^^xsd:decimal # RT tolerance (minute)
+    }
+    ?sample a emi:ExtractSample ;
+        sosa:isSampleOf* ?organe .
+    ?organe emi:inTaxon ?taxon .
+    ?taxon rdfs:label ""melochia umbellata"" .
+    ?sample sosa:isFeatureOfInterestOf ?lcms .
+    ?lcms a emi:LCMSAnalysisPos ;
+        sosa:hasResult ?feature_list .
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature emi:hasRetentionTime ?rt ;
+        emi:hasAnnotation ?sirius .
+    ?sirius a emi:StructuralAnnotation ;
+        prov:wasGeneratedBy ?activity .
+    ?activity prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+    ?sirius emi:hasChemicalStructure ?ik2d .
+    ?sample sosa:isFeatureOfInterestOf ?lcms_opp .
+    ?lcms_opp a emi:LCMSAnalysisNeg ;
+        sosa:hasResult ?feature_list_opp .
+    ?feature_list_opp emi:hasLCMSFeature ?feature_opp .
+    ?feature_opp emi:hasRetentionTime ?rt_opp ;
+        emi:hasAnnotation ?sirius_opp .
+    ?sirius_opp a emi:StructuralAnnotation ;
+    #    prov:wasGeneratedBy ?activity_opp ;
+        emi:hasChemicalStructure ?ik2d .
+    #?activity_opp prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+    FILTER(((?rt - ?rt_tol) < ?rt_opp) && ((?rt + ?rt_tol) > ?rt_opp))
+}","","~"
+"5","69","How many features have the same SIRIUS and ISDB annotation?","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX emi: <https://w3id.org/emi#>
+
+SELECT (COUNT(?feature) AS ?count)
+WHERE {
+        ?lcms emi:hasMassiveDOI ?massive_doi ;
+            emi:hasLCMSFeatureSet ?feature_list .
+        # FILTER(regex(str(?massive_doi), ""MSV000087728"")) # MassIVE id filter, MSV000087728 is pf1600, MSV000093464 is 337 Korean medicinal plants, if you want to query both you can pipe ""MSV000087728|MSV000093464"". You can apply or not these filters by ucommenting/commenting this line.
+        ?feature_list emi:hasLCMSFeature ?feature .
+        ?feature emi:hasAnnotation ?sirius_annotation .
+        ?sirius_annotation a emi:StructuralAnnotation ;
+            prov:wasGeneratedBy ?activity ;
+            emi:hasChemicalStructure ?sirius_ik2d .
+        ?activity prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+        ?feature emi:hasAnnotation ?isdb_annotation .
+        ?activity_isdb prov:wasAssociatedWith <https://oolonek.github.io/ISDB> .
+        ?isdb_annotation a emi:StructuralAnnotation ;
+            prov:wasGeneratedBy ?activity_isdb ;
+            emi:hasChemicalStructure ?isdb_ik2d .
+    FILTER(?isdb_ik2d = ?sirius_ik2d) .
+}","","~"
+"6","69","Search spectrally related features with and within the VGF151_E05 sample of a datura stramonium through counts of common peaks and loss. Return their species, family and genus names","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT ?family_name ?genus_name ?species_name ?wd_sp ?feature ?sub_rt ?sub_parent_mass ?count
+WHERE {
+    # Subquery to get the top N hits with their Wikidata IDs
+    {
+        SELECT ?wd_sp ?feature (SAMPLE(?rt) AS ?sub_rt) (SAMPLE(?parent_mass) AS ?sub_parent_mass) (COUNT(?peakloss) AS ?count)
+        WHERE {
+            ?material sosa:hasSample ?extract ;
+                sosa:isSampleOf* ?organism.
+            ?organism emi:inTaxon ?wd_sp .
+            ?extract a emi:ExtractSample ;
+                sosa:isFeatureOfInterestOf ?lcms .
+            ?lcms a emi:LCMSAnalysisPos ;
+                sosa:hasResult ?feature_list .
+            ?feature_list emi:hasLCMSFeature ?feature .
+            ?feature a emi:LCMSFeature ;
+                emi:hasSpec2VecDoc ?doc ;
+                emi:hasParentMass ?parent_mass ;
+                emi:hasRetentionTime ?rt .
+            ?doc emi:hasSpec2VecLoss|emi:hasSpec2VecPeak ?peakloss .
+
+            {
+                SELECT ?peakloss WHERE {
+                    ?lcms a emi:LCMSAnalysisPos ;
+                        sosa:hasResult ?feature_list ;
+                        sosa:hasFeatureOfInterest ?sample .
+                    ?sample dcterms:identifier ""VGF151_E05"" ;
+                        sosa:isSampleOf* ?organism .
+                    ?organism emi:inTaxon/rdfs:label ""datura stramonium"".
+                    ?feature_list emi:hasLCMSFeature ?feature .
+                    ?feature a emi:LCMSFeature ;
+                        emi:hasSpec2VecDoc ?doc .
+                    ?doc emi:hasSpec2VecLoss|emi:hasSpec2VecPeak ?peakloss .
+                }
+            }
+        }
+        GROUP BY ?wd_sp ?feature
+        ORDER BY DESC(?count)
+        LIMIT 5
+    }
+
+    # Outer query to fetch species names from Wikidata
+    # Fetching taxonomic information from Wikidata
+    SERVICE <https://query.wikidata.org/sparql> {
+        ?wd_sp wdt:P225 ?species_name .
+        OPTIONAL {
+            ?family wdt:P31 wd:Q16521 ;
+                wdt:P105 wd:Q35409 ;
+                wdt:P225 ?family_name ;
+                ^wdt:P171* ?wd_sp .
+        }
+        OPTIONAL {
+            ?genus wdt:P31 wd:Q16521 ;
+                wdt:P105 wd:Q34740 ;
+                wdt:P225 ?genus_name ;
+                ^wdt:P171* ?wd_sp .
+        }
+    }
+} GROUP BY ?family_name ?genus_name ?species_name ?wd_sp ?feature ?sub_rt ?sub_parent_mass ?count
+ORDER BY DESC(?count)","","~"
+"7","69","Show chemical structures in Melochia umbellata extracts with structural annotations where the cosmic score is greater than 0.5 and the zodiac score is less than 0.8. For ISDB annotations, consider taxon scores greater than or equal to 6","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT DISTINCT ?ik ?wd_id ?taxon ?taxon_name
+WHERE { 
+    {SELECT  ?ik ?wd_id
+        WHERE {
+            ?sample a emi:ExtractSample ;
+                sosa:isSampleOf* ?organe ;
+                sosa:isFeatureOfInterestOf ?lcms .
+            ?organe emi:inTaxon ?taxon .
+            ?taxon rdfs:label ""melochia umbellata"" .
+            ?lcms a emi:LCMSAnalysisPos ;
+                sosa:hasResult ?feature_list .
+            ?feature_list emi:hasLCMSFeature ?feature .
+            {
+                ?feature emi:hasAnnotation ?annotation .
+                ?annotation a emi:StructuralAnnotation ;
+                    prov:wasGeneratedBy ?activity .
+                ?activity prov:wasAssociatedWith <https://bio.informatik.uni-jena.de/software/sirius> .
+                ?annotation emi:hasCosmicScore ?cosmic ;
+                    emi:hasZodiacScore ?zodiac .
+                FILTER((?cosmic > 0.5) && (?zodiac > 0.8))
+            } UNION {
+                ?feature emi:hasAnnotation ?annotation .
+                ?annotation emi:hasTaxoScore ?taxo .
+                FILTER(?taxo >= 6)
+            }
+            ?annotation emi:hasChemicalStructure ?ik2d .
+            ?ik2d emi:hasSMILES ?smiles ;
+                emi:isInChIKey2DOf ?ik .
+            ?ik emi:isInChIKeyOf ?wd_id .
+        } LIMIT 50
+    }
+  SERVICE <https://query.wikidata.org/sparql> {
+        ?wd_id wdt:P31 wd:Q113145171 ;
+            wdt:P703 ?taxon .
+        ?taxon wdt:P225 ?taxon_name .
+    }
+}","","~"
+"8","69","Which features in the positive ionization mode have the most fragments and neutral losses in common with the feature identified as mzspec:MSV000087728:VGF143_H08_features_ms2_pos.mgf:scan:707","PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT ?feature ?massive_doi (SAMPLE(?rt) AS ?retention_time) (SAMPLE(?pm) AS ?parent_mass) (COUNT(?peakloss) AS ?count)
+WHERE {
+    ?lcms a emi:LCMSAnalysisPos ;
+        emi:hasMassiveDOI ?massive_doi ;
+        sosa:hasResult ?feature_list .
+    #FILTER(regex(str(?massive_doi), ""MSV000087728"")) # MassIVE id filter
+    ?feature_list emi:hasLCMSFeature ?feature .
+    ?feature a emi:LCMSFeature ;
+        emi:hasSpec2VecDoc ?doc ;
+        emi:hasParentMass ?pm ;
+        emi:hasRetentionTime ?rt .
+    ?doc emi:hasSpec2VecLoss|emi:hasSpec2VecPeak ?peakloss .
+
+    {
+        SELECT ?peakloss WHERE {
+            ?feature a emi:LCMSFeature ;
+                emi:hasUSI ""mzspec:MSV000087728:VGF143_H08_features_ms2_pos.mgf:scan:707"" ;
+                emi:hasSpec2VecDoc ?doc .
+            ?doc emi:hasSpec2VecLoss|emi:hasSpec2VecPeak ?peakloss .
+        }
+    }
+} GROUP BY ?feature ?massive_doi ORDER BY DESC(?count)","","~"
+"9","69","Which samples have features annotated as Aspidosperma_type alkaloids by CANOPUS with a probability score above 0.5, ordered by the decreasing count of features?","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+
+SELECT ?extract ?organe ?species_name ?genus_name ?family_name ?count_of_selected_class
+WHERE {
+    ?material sosa:hasSample ?extract ;
+        sosa:isSampleOf ?organe .
+    ?organe emi:inTaxon ?wd_sp .
+    #OPTIONAL {
+        SERVICE <https://query.wikidata.org/sparql> {
+            ?wd_sp wdt:P225 ?species_name .
+            ?family wdt:P31 wd:Q16521 ;
+                wdt:P105 wd:Q35409 ;
+                wdt:P225 ?family_name ;
+                ^wdt:P171* ?wd_sp .
+            ?genus wdt:P31 wd:Q16521 ;
+                wdt:P105 wd:Q34740 ;
+                wdt:P225 ?genus_name ;
+                ^wdt:P171* ?wd_sp .
+        }
+    #}
+    {
+        SELECT ?extract (COUNT(DISTINCT ?feature) AS ?count_of_selected_class)
+        WHERE {
+            ?extract a emi:ExtractSample ;
+                sosa:isFeatureOfInterestOf ?lcms .
+            ?lcms a emi:LCMSAnalysis ;
+                emi:hasLCMSFeatureSet ?feature_list .
+            ?feature_list emi:hasLCMSFeature ?feature .
+            ?feature emi:hasAnnotation ?canopus .
+            ?canopus a emi:ChemicalTaxonAnnotation ;
+                emi:hasClass ?np_class ;
+                emi:hasClassProbability ?class_prob .
+            ?np_class rdfs:label ""Aspidosperma type"" .
+            FILTER((?class_prob > 0.5)) .
+        } GROUP BY ?extract ORDER BY DESC(?count_of_selected_class)
+    }
+}","","~"
+"11","69","List interactions of all species which have an IUCN status (wdt:P141) of near threatened (wd:Q719675).","PREFIX emi: <https://w3id.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT ?wdx_Source ?sourceName ?intxnLabel ?intxnType ?wdx_Target ?targetName WHERE {
+    {
+        SELECT DISTINCT ?wdx_Target ?targetName ?sourceName ?wdx_Source ?intxnType ?intxnLabel WHERE { #first select the source-target interaction-pairs
+            #unidirectional interaction, e.g.: source-X hosts target target-Y
+            ?intxn emi:hasSource ?source ;
+                emi:hasTarget ?target ;
+                emi:isClassifiedWith ?intxnType .
+            ?intxnType rdfs:label ?intxnLabel .
+            ?source emi:inTaxon ?wdx_Source ; # retrieve wikidata-id for source
+                                rdfs:label ?sourceName . # scientific name of source as given in GloBI
+                        ?target emi:inTaxon ?wdx_Target ; # retrieve wikidata-id for target
+                                rdfs:label ?targetName . # scientific name of target as given in GloBI
+                }
+    }
+    SERVICE <https://qlever.dev/api/wikidata> {
+        {
+            ?wdx_Source wdt:P141 wd:Q719675 ; # filter source wikidata ids, which have IUCN status (wdt:P141) as near threatened (wd:Q719675) and which is a plant
+                wdt:P171* wd:Q879246 ;
+        } UNION
+        {
+            ?wdx_Target wdt:P141 wd:Q719675 ; # filter target wikidata ids, which have IUCN status (wdt:P141) as near threatened (wd:Q719675) and which is a plant
+                wdt:P171* wd:Q879246 ;
+        }
+    }
+}","","~"
+"12","69","List traits of all species which have an IUCN status (wdt:P141) of near threatened (wd:Q719675).","PREFIX emi: <https://w3id.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX qudt: <https://qudt.org/schema/qudt/>
+SELECT DISTINCT ?source_wd ?sourceName ?tryDataLab ?tryDataVal ?unit ?unitComment WHERE {
+	?trySpObs sosa:isSampleOf ?source_trySpName ; #retrieve trait/non-trait data from trydb for trySpName (scientific name of plant species as listed in trydb)
+		rdfs:label ?sourceName ;
+		sosa:isFeatureOfInterestOf ?tryObId .
+	?source_trySpName emi:inTaxon ?source_wd . #retrieve wikidata-id for trySpName
+	?tryObId sosa:hasResult ?tryData .
+	?tryData rdfs:label ?tryDataLab ;
+		rdf:type emi:Trait ; #filter data which is labelled as 'Trait'
+		rdf:value ?tryDataVal ;	#retrieve values for Trait data
+		qudt:hasUnit ?unit . #retrieve units for Trait data
+	OPTIONAL {
+		?tryData rdfs:comment ?unitComment .
+	} #retrieve comments (containing original unprocessed unit information - necessary for understanding some data) for Trait data
+	SERVICE <https://qlever.dev/api/wikidata> {
+        	?source_wd wdt:P141 wd:Q719675 . #filter wikidata-ids for trySpName, which have IUCN status (wdt:P141) as near threatened (wd:Q719675)
+        }
+}","","~"
+"13","69","List all metabolites produced by species with near threatened (wd:Q719675) IUCN status (wdt:P141) and with values available (or greater than a specific value) for trait 'Seed dry mass'.","PREFIX emi: <https://w3id.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?structure_inchikey ?wd_chem ?source_wdx ?sourceName WHERE {
+	# trait data
+	?trySpObs sosa:isSampleOf ?trySpName ; # trait/non-trait data for trySpName (scientific name of plant species as listed in trydb)
+		rdfs:label ?sourceName ;
+		sosa:isFeatureOfInterestOf ?tryObId .
+	?tryObId sosa:hasResult ?tryData .
+	?trySpName emi:inTaxon ?source_wdx . # wikidata-ids wdx for trySpName
+	?tryData rdfs:label ?tryDataLab ;
+		rdf:type emi:Trait ; #retrieve data which is labelled as 'Trait' and its values
+		rdf:value ?tryDataVal .
+	FILTER (STR(?tryDataLab) = 'Seed dry mass' ) #filter on data label 'Seed dry mass'
+	FILTER (?tryDataVal >= 100)
+	SERVICE <https://qlever.dev/api/wikidata> {
+        	?source_wdx wdt:P141 wd:Q719675 . # filter wikidata-ids for trySpName, which have IUCN status (wdt:P141) as near threatened (wd:Q719675)
+        }
+	# metabolite data
+	{
+		SELECT ?source_wdx ?structure_inchikey ?wd_chem WHERE {
+			?material sosa:hasSample ?extract ;
+		        	sosa:isSampleOf ?organe .
+			?organe emi:inTaxon ?source_wdx . # filter metabolite data which is found in wikidata-ids wdx
+			?extract sosa:isFeatureOfInterestOf ?lcms .
+		    	?lcms sosa:hasResult ?feature_list .
+			?feature_list emi:hasLCMSFeature ?feature .
+			?feature emi:hasAnnotation ?sirius_annotation .
+			?sirius_annotation a emi:StructuralAnnotation ;
+				emi:hasChemicalStructure ?ik2d .
+			?ik2d emi:hasSMILES ?smiles ;
+		    		emi:isInChIKey2DOf ?structure_inchikey .
+			?structure_inchikey emi:isInChIKeyOf ?wd_chem .	# wikidata-ids for metabolites
+		}
+	}
+	UNION # union with data from lotus (integrated in wikidata)
+	{
+		SERVICE <https://qlever.dev/api/wikidata> {
+			?wd_chem wdt:P235 ?structure_inchikey;
+   				wdt:P703 ?source_wdx .
+		}
+	}
+} LIMIT 1000","","~"
+"14","69","List traits (and their values) of plants producing Diterpenoids","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX qudt: <https://qudt.org/schema/qudt/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT DISTINCT ?source_wdx ?sourceName ?tryDataLab ?tryDataVal ?unit ?unitComment WHERE {
+	# metabolite data
+	{
+		SELECT DISTINCT ?source_wdx WHERE {
+			?material sosa:hasSample ?extract ;
+		        	sosa:isSampleOf ?organe .
+		        ?organe emi:inTaxon ?source_wdx . # filter metabolite data which is found in wikidata-ids wdx
+		        ?extract sosa:isFeatureOfInterestOf ?lcms .
+		        ?lcms sosa:hasResult ?feature_list .
+		        ?feature_list emi:hasLCMSFeature ?feature .
+		        ?feature emi:hasAnnotation ?sirius_annotation .
+		        ?sirius_annotation a emi:StructuralAnnotation ;
+		        	emi:hasChemicalStructure ?ik2d .
+		        ?ik2d emi:hasSMILES ?smiles ;
+		        	emi:isInChIKey2DOf ?ik ;
+		                emi:hasClass ?npcClass .
+			?npcClass skos:broader ?npcSuperClass .
+		        ?ik emi:isInChIKeyOf ?wd_chem .	# wikidata-ids for metabolites
+			FILTER (REGEX(STR(?npcSuperClass), 'DITERPENOIDS'))
+		}
+	} UNION	#union with data from lotus (integrated in wikidata)
+	{
+		SERVICE <https://qlever.dev/api/wikidata> {
+			?wd_chem wdt:P235 ?structure_inchikey ;
+				((wdt:P31|wdt:P279)/(wdt:P279*)) wd:Q47006367 ;	# check if the class/superclass of the chemical is Diterpenoids
+   				wdt:P703 ?source_wdx .
+		}
+	}
+	# trait data
+	?trySpName emi:inTaxon ?wdx .
+	?trySpObs sosa:isSampleOf ?trySpName ; # trait/non-trait data for trySpName (scientific name of plant species as listed in trydb)
+		rdfs:label ?sourceName ;
+		sosa:isFeatureOfInterestOf ?tryObId .
+	?trySpName emi:inTaxon ?source_wdx . # wikidata-ids wdx for trySpName matching the one from metabolite queries
+	?tryObId sosa:hasResult ?tryData .
+	?tryData rdfs:label ?tryDataLab ;
+		rdf:type emi:Trait ; # retrieve data which is labelled as 'Trait' and its values
+		rdf:value ?tryDataVal ;
+		qudt:hasUnit ?unit ;
+		rdfs:comment ?unitComment . # original units for Trait data as listed in trydb
+}","","~"
+"15","69","List of possible natural locations of organisms, which produce Bahamaolide A,  (wd:Q75068439) which is an antifungal (https://doi.org/10.1021/np3001915).","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT DISTINCT ?organismName ?organismWD ?loc ?lats ?longs WHERE {
+	# metabolite data
+	{
+		SELECT DISTINCT ?organismWD ?organismName WHERE {
+			?material sosa:hasSample ?extract ;
+		        	sosa:isSampleOf ?organe .
+			?organe emi:inTaxon ?organismWD ; # filter metabolite data which is found in wikidata-ids wdx
+				rdfs:label ?organismName .
+			?extract sosa:isFeatureOfInterestOf ?lcms .
+			?lcms sosa:hasResult ?feature_list .
+			?feature_list emi:hasLCMSFeature ?feature .
+			?feature emi:hasAnnotation ?sirius_annotation .
+			?sirius_annotation a emi:StructuralAnnotation ;
+				emi:hasChemicalStructure ?ik2d .
+			?ik2d emi:hasSMILES ?smiles ;
+				emi:isInChIKey2DOf ?ik .
+			?ik emi:isInChIKeyOf ?wd_chem .	# retrieve wikidata-ids for metabolites
+			VALUES ?wd_chem { wd:Q75068439 } # filter wikidata_id of metabolites matches wd:Q75068439
+		}
+	} UNION	#union with data from lotus (integrated in wikidata)
+	{
+		SERVICE <https://qlever.dev/api/wikidata> {
+			?wd_chem wdt:P235 ?ik ;
+	    			wdt:P703 ?organismWD .
+			 VALUES ?wd_chem { wd:Q75068439 }
+			 OPTIONAL { ?organismWD wdt:P225 ?organismName . }
+		}
+	}
+	# interaction data
+	FILTER(?organismWD = ?source_wdx || ?organismWD = ?target_wdx)	# ensure that organism-wd is either from source or target
+	?intxn emi:hasSource ?source ; #retrieve interaction-pairs
+		emi:hasTarget ?target .
+	?source emi:inTaxon ?source_wdx . # retrieve wikidata-id of source
+	?target emi:inTaxon ?target_wdx . # retrieve wikidata-id of target
+	?intxn prov:atLocation ?loc ; # retrieve the location of the interaction, and the latitude/longitude
+		wgs:lat ?lats ;
+		wgs:long ?longs .
+}","","~"
+"16","69","List of possible natural locations of plants, which produce  senkyunolide (wd:Q27251426)  which is a thalide for cerebral disorders (https://doi.org/10.3390/molecules28083636).","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT DISTINCT ?organismName ?organismWD ?loc ?lats ?longs WHERE {
+	# metabolite data
+	{
+		SELECT DISTINCT ?organismWD ?organismName WHERE {
+			?material sosa:hasSample ?extract ;
+		        	sosa:isSampleOf ?organe .
+			?organe emi:inTaxon ?organismWD ; # filter metabolite data which is found in wikidata-ids wdx
+				rdfs:label ?organismName .
+			?extract sosa:isFeatureOfInterestOf ?lcms .
+			?lcms sosa:hasResult ?feature_list .
+			?feature_list emi:hasLCMSFeature ?feature .
+			?feature emi:hasAnnotation ?sirius_annotation .
+			?sirius_annotation a emi:StructuralAnnotation ;
+				emi:hasChemicalStructure ?ik2d .
+			?ik2d emi:hasSMILES ?smiles ;
+				emi:isInChIKey2DOf ?ik .
+			?ik emi:isInChIKeyOf ?wd_chem .	# retrieve wikidata-ids for metabolites
+			VALUES ?wd_chem { wd:Q27251426 } # filter wikidata_id of metabolites matches wd:Q27251426
+		}
+	} UNION # union with data from lotus (integrated in wikidata)
+	{
+		SERVICE <https://qlever.dev/api/wikidata> {
+			?wd_chem wdt:P235 ?ik ;
+	    			wdt:P703 ?organismWD .
+			 VALUES ?wd_chem { wd:Q27251426 }
+			 OPTIONAL { ?organismWD wdt:P225 ?organismName . }
+		}
+	}
+	# interaction data
+	FILTER(?organismWD = ?source_wdx || ?organismWD = ?target_wdx)	# ensure that organism-wd is either from source or target
+	?intxn emi:hasSource ?source ; # retrieve interaction-pairs
+		emi:hasTarget ?target .
+	?source emi:inTaxon ?source_wdx . # retrieve wikidata-id of source
+	?target emi:inTaxon ?target_wdx . # retrieve wikidata-id of target
+	?intxn prov:atLocation ?loc ; # retrieve the location of the interaction, and the latitude/longitude
+			wgs:lat ?lats ;
+			wgs:long ?longs .
+} LIMIT 4000","","~"
+"17","69","List metabolites of plants that interact with plant parasite moth Orgyia postica (wd:Q7102162) .","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+SELECT DISTINCT ?sourceWD ?sourceName ?intxnName ?intxnLabel ?targetWD ?targetName ?ik ?wd_chem WHERE {
+	# interaction data
+	{
+		SELECT DISTINCT ?sourceWD ?sourceName ?intxnName ?intxnLabel ?targetWD ?targetName WHERE {
+                	?intxn emi:hasSource ?source ; # retrieve interaction-pairs
+                		emi:hasTarget ?target ;
+                                emi:isClassifiedWith ?intxnName .
+                        ?target emi:inTaxon ?targetWD ;	# retrieve wikidata-id for target plant
+				sosa:isSampleOf ?targetSample ;
+				rdfs:label ?targetName .
+			?source emi:inTaxon ?sourceWD ;	# retrieve wikidata-id for source parasite
+				sosa:isSampleOf ?sourceSample ;
+				rdfs:label ?sourceName .
+			?intxnName rdfs:label ?intxnLabel
+                        VALUES ?sourceWD { wd:Q7102162 } # retain results only if the source-WD matches the wikidata-id of Orgyia postica
+                }
+	}
+	# metabolite data
+	{
+		SELECT DISTINCT ?targetWD ?ik ?wd_chem WHERE {
+                	?material sosa:hasSample ?extract ;
+                      		sosa:isSampleOf ?organe .
+                      	?organe emi:inTaxon ?targetWD .	# filter metabolite data which is found in wikidata-ids targetWD
+                      	?extract sosa:isFeatureOfInterestOf ?lcms .
+                      	?lcms sosa:hasResult ?feature_list .
+                      	?feature_list emi:hasLCMSFeature ?feature .
+                      	?feature emi:hasAnnotation ?sirius_annotation .
+                      	?sirius_annotation a emi:StructuralAnnotation ;
+                      		emi:hasChemicalStructure ?ik2d .
+                        ?ik2d emi:hasSMILES ?smiles ;
+                        	emi:isInChIKey2DOf ?ik .
+                      	?ik emi:isInChIKeyOf ?wd_chem .	# retrieve wikidata-ids for metabolites
+                }
+	} UNION	#union with data from lotus (integrated in wikidata)
+	{
+		SERVICE <https://qlever.dev/api/wikidata> {
+			?wd_chem wdt:P235 ?ik ;
+				wdt:P703 ?targetWD .
+		}
+		SERVICE <https://qlever.dev/api/wikidata> {
+               		?targetWD wdt:P171* wd:Q879246 . # filter source wikidata ids which are plants
+                     	OPTIONAL { ?targetWD wdt:P225 ?targetName . }
+               	}
+	}
+}","","~"
+"18","69","List links between host-parasite and host-allelopathic interactions, where host is an agricultural crop, allelopath is usually a plant that inhibits growth of parasites which are usually insects. Inhibition happens by root/stem/leaf exudates of the allelopath.","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT DISTINCT ?parasiteX_WD ?parasiteName ?intxn1Label ?allelopathX_WD ?allelopathName ?intxn2Label ?agriCrop_WD ?agriCropName ?intxn3Label ?study1_DOI ?study2_DOI ?study3_DOI WHERE {
+
+	#part-1 interactions for parasite that negatively effects a plant or an agricultural crop
+	?parasiteX1 emi:inTaxon ?parasiteX_WD . # parasite and its WD
+	?agriCropX emi:inTaxon ?agriCrop_WD . # agricultural crop and its WD
+	?intxn1 emi:hasSource ?parasiteX1 ; # retrieve interaction pairs part-1
+    		emi:hasTarget ?agriCropX ;
+    		emi:isClassifiedWith ?intxnName1 .
+	?intxnName1 rdfs:label ?intxn1Label .
+	# filter the interactions either by FILTER (interaction label) or VALUES (interaction ID)
+	FILTER ((STR(?intxn1Label) IN ('hasHost','rootparasiteOf', 'hemiparasiteOf', 'hyperparasiteOf','rootparasiteOf','endoparasiteOf','ectoparasiteOf')))
+	# VALUES ?intxnName1 { <http://purl.obolibrary.org/obo/RO_0002454> <http://purl.obolibrary.org/obo/RO_0002632> <http://purl.obolibrary.org/obo/RO_0002634> <http://purl.obolibrary.org/obo/RO_0002237> <http://purl.obolibrary.org/obo/RO_0002553> <http://purl.obolibrary.org/obo/RO_0008503> <http://purl.obolibrary.org/obo/RO_0002444> <http://purl.obolibrary.org/obo/RO_0002236> }
+    	OPTIONAL {
+		?intxn1 dcterms:bibliographicCitation ?study1_DOI .
+	}
+
+	# part-2 interactions for allelopath that impacts a plant or an agricultural crop
+	{
+		SELECT * WHERE {
+			?allelopathX1 emi:inTaxon ?allelopathX_WD . #allelopath and its WD
+			?intxn2 emi:hasSource ?allelopathX1 ; #retrieve interaction pairs part-2
+    				emi:hasTarget ?agriCrop ;
+    				emi:isClassifiedWith ?intxnName2 .
+			?intxnName2 rdfs:label ?intxn2Label .
+			VALUES ?intxnName2 { <http://purl.obolibrary.org/obo/RO_0002555> } # filter interactions which have interaction ID of allelopathOf
+			?agriCrop emi:inTaxon ?agriCrop_WD ; # retreieve agriCrop and its WD
+	           		rdfs:label ?agriCropName .
+    			OPTIONAL {
+				?intxn2 dcterms:bibliographicCitation ?study2_DOI .
+			}
+			SERVICE <https://qlever.dev/api/wikidata> {
+	 			?agriCrop_WD wdt:P171* wd:Q879246 . # keep the interaction pairs part-2 only if agriCrop_WD has Kingdom Archaeplastida (wd:Q879246) in its lineage, this is to ensure the agriCrop is really a plant
+			}
+		}
+	}
+
+    	#part-3 interactions for parasite that impacts the allelopath
+	{
+		SELECT * WHERE {
+	    		?intxn3 emi:hasSource ?parasiteX ; # retrieve interaction pairs part-3
+	    			emi:hasTarget ?allelopathX ;
+	    			emi:isClassifiedWith ?intxnName3 .
+			?intxnName3 rdfs:label ?intxn3Label .
+			# filter interactions by interaction label (hasHost and allelopathOf) or interaction ID
+	    		FILTER (STR(?intxn3Label) IN ('hasHost','hasAllelopath'))
+			# VALUES ?intxnName3 { <http://purl.obolibrary.org/obo/RO_0020301> <http://purl.obolibrary.org/obo/RO_0002454> }
+			?parasiteX emi:inTaxon ?parasiteX_WD ; # retreieve wikidata-ids for parasiteX
+				rdfs:label ?parasiteName .
+			?allelopathX emi:inTaxon ?allelopathX_WD ; # retreieve wikidata-ids for allelopathX
+				rdfs:label ?allelopathName .
+			OPTIONAL {
+				?intxn3 dcterms:bibliographicCitation ?study3_DOI .
+	    		}
+		}
+	}
+}","","~"
+"19","69","A list of interactions depicting connections between parasatoids harmful for insects living as parasites on plants.","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT DISTINCT ?parasitoidX_WD ?parasitoidName ?intxn2Label ?parasiteX_WD ?parasiteName ?intxn3Label ?hostPlant_WD ?hostPlantName ?study2_DOI ?study3_DOI WHERE {
+	# part-1 interaction data parasite and parasitoid
+	{
+		SELECT DISTINCT ?parasitoidName ?parasiteName ?parasiteX_WD ?intxn2Label ?parasitoidX_WD ?study2_DOI WHERE {
+			?intxn2 emi:hasSource ?parasitoidX ; # retrieve interaction pairs part-1
+	    			emi:hasTarget ?parasiteX ;
+	    			emi:isClassifiedWith ?intxnName2 .
+			VALUES ?intxnName2 { <http://purl.obolibrary.org/obo/RO_0002208> } # keep interactions only if the interaction-id is RO_0002208 (parasitoidOf), e.g: 'parasitoidX' is 'parasitoidOf' 'parasiteX'
+			?intxnName2 rdfs:label ?intxn2Label .
+			?parasitoidX emi:inTaxon ?parasitoidX_WD ; # retreieve wikidata-ids for parasitoidX
+			     	rdfs:label ?parasitoidName ;
+			     	sosa:isSampleOf ?parasitoidSample . # retrieve scientific name of parasitoidX as listed in GloBI
+			?parasiteX emi:inTaxon ?parasiteX_WD ; # retreieve wikidata-ids for parasiteX
+				rdfs:label ?parasiteName ;
+				sosa:isSampleOf ?parasiteSample . # retreieve scientific name for parasiteX as listed in GloBI
+			OPTIONAL {
+				?intxn2 dcterms:bibliographicCitation ?study2_DOI . # optionally retrieve the doi of the study for parasitoid-parasite pairs
+			}
+		}
+	}
+
+	# part-2 interaction data parasite and host plant
+	?parasiteX1 emi:inTaxon ?parasiteX_WD .	# check pasarsiteX1 is in wikidata-id parasiteX_WD (the ones obtained from interaction-pairs part-1)
+	?intxn3 emi:hasSource ?parasiteX1 ; # retrieve interaction pairs part-2
+    		emi:hasTarget ?hostPlant ;
+    		emi:isClassifiedWith ?intxnName3 .
+	?intxnName3 rdfs:label ?intxn3Label .
+	?hostPlant emi:inTaxon ?hostPlant_WD ;	# retreieve wikidata-ids for hostPlant
+		rdfs:label ?hostPlantName ;
+		sosa:isSampleOf ?hostPlantSample . # retreieve scientific name for hostPlant as listed in GloBI
+	OPTIONAL {
+		?intxn3 dcterms:bibliographicCitation ?study3_DOI .
+	}
+    	FILTER (!(STR(?intxn3Label) IN ('visits', 'visitsFlowersOf', 'pollinates')))	# keep interactions only if the interaction-names are not 'visits', 'visitsFlowersOf' or 'pollinates'. e.g.: 'parasiteX1' is 'pathogenOf/parasiteOf/..' 'hostPlant'
+	SERVICE <https://qlever.dev/api/wikidata> {
+	 	?hostPlant_WD wdt:P171* wd:Q879246 . # keep the interaction pairs part-2 only if hostPlant_WD has Kingdom Archaeplastida (wd:Q879246) in its lineage, this is to ensure the hostPlant is really a plant
+	}
+} LIMIT 1000","","~"
+"20","69","Natural producers (and their interactions that might be useful in agriculture) of Onpordopicrin (wd:Q27107580), which might exhibit antimicrobial and cytotoxic activities, especially against human-derived macrophages and against epidermoid carcinoma cells. There is limited scientific evidence to support these claims (https://www.sciencedirect.com/science/article/abs/pii/S138614251500685X).","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT DISTINCT ?sourceWD ?sourceName ?intxnName ?targetWD ?targetName ?loc WHERE {
+	# trait data
+	?intxn emi:hasSource ?xOrg ; # retrieve interaction-pairs
+        	emi:hasTarget ?yOrg ;
+		emi:isClassifiedWith ?intxnName ;
+		prov:atLocation ?loc ; # retrieve location, latitude and longitude of interactions
+		wgs:lat ?lats ;
+		wgs:long ?longs .
+	?xOrg emi:inTaxon ?sourceWD ; # retrieve interaction-source and its scientific name as listed in GloBI
+		rdfs:label ?sourceName ;
+		sosa:isSampleOf ?sourceSample .
+	?yOrg emi:inTaxon ?targetWD ; # retrieve interaction-target and its scientific name as listed in GloBI
+		rdfs:label ?targetName ;
+		sosa:isSampleOf ?targetSample .
+
+	# metabolite data
+        {
+		SELECT DISTINCT ?targetWD ?wd_chem WHERE {
+			?material sosa:hasSample ?extract ;
+                        	sosa:isSampleOf ?organe .
+                	?organe emi:inTaxon ?targetWD .	# filter by target wikidata-id
+                	?extract sosa:isFeatureOfInterestOf ?lcms .
+                	?lcms sosa:hasResult ?feature_list .
+                	?feature_list emi:hasLCMSFeature ?feature .
+                	?feature emi:hasAnnotation ?sirius_annotation .
+                	?sirius_annotation a emi:StructuralAnnotation ;
+	                	emi:hasChemicalStructure ?ik2d .
+                	?ik2d emi:hasSMILES ?smiles ;
+                      		emi:isInChIKey2DOf ?ik .
+                	?ik emi:isInChIKeyOf ?wd_chem .
+                	VALUES ?wd_chem { wd:Q27107580 } # filter on the wikidata-id of Onpordopicrin
+		}
+	} UNION	# union with the lotus metabolite data from wikidata
+	{
+		SERVICE <https://qlever.dev/api/wikidata> {
+			?wd_chem wdt:P235 ?ik ;
+   				wdt:P703 ?targetWD .
+		 	VALUES ?wd_chem { wd:Q27107580 }
+		}
+	}
+}","","~"
+"21","69","List possible interactions of plants that can produce Norhyocyamine (wd:Q27107545), a plant secondary metabolite.","PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+SELECT DISTINCT ?sourceWD ?sourceName ?intxnName ?intxnId ?targetWD ?targetName WHERE {
+	# interaction data
+	{
+        	?intxn emi:hasSource ?xOrg ; # retrieve interaction-pairs
+                	emi:hasTarget ?yOrg ;
+                        emi:isClassifiedWith ?intxnId .
+                ?intxnId rdfs:label ?intxnName .
+                ?xOrg emi:inTaxon ?sourceWD ;
+			rdfs:label ?sourceName .
+		?yOrg emi:inTaxon ?targetWD ;
+			rdfs:label ?targetName .
+        }
+
+	# metabolite data
+	FILTER (?xWD = ?sourceWD || ?xWD = ?targetWD)	# ensure that xWD can be both source/target from the interaction-pairs retrieved before
+        {
+		SELECT DISTINCT ?xWD ?wd_chem WHERE {
+                	?material sosa:hasSample ?extract ;
+                        	sosa:isSampleOf ?organe .
+                        ?organe emi:inTaxon ?xWD .
+                        ?extract sosa:isFeatureOfInterestOf ?lcms .
+                        ?lcms sosa:hasResult ?feature_list .
+                        ?feature_list emi:hasLCMSFeature ?feature .
+                        ?feature emi:hasAnnotation ?sirius_annotation .
+                        ?sirius_annotation a emi:StructuralAnnotation ;
+                        	emi:hasChemicalStructure ?ik2d .
+                        ?ik2d emi:hasSMILES ?smiles ;
+                        	emi:isInChIKey2DOf ?ik .
+                        ?ik emi:isInChIKeyOf ?wd_chem .
+                        VALUES ?wd_chem { wd:Q27107545 }
+                }
+	}  UNION # union with data from wikidata (lotus)
+	{
+		SERVICE <https://qlever.dev/api/wikidata> {
+			?wd_chem wdt:P235 ?ik ;
+   				wdt:P703 ?xWD .
+			VALUES ?wd_chem { wd:Q27107545 }
+		}
+	}
+}","","~"
+"22","69","Retrieve data of 4 traits in leaf economics spectrum.","PREFIX emi: <https://w3id.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX qudt: <https://qudt.org/schema/qudt/>
+SELECT DISTINCT ?source_wdx ?sourceName ?traitCategory ?traitLabel ?tryDataVal ?unit ?unitComment WHERE 
+	{
+		# trait data
+		# trait/non-trait data for trySpName (scientific name of plant species as listed in trydb)
+		?trySpObs sosa:isSampleOf ?trySpName ;
+			rdfs:label ?sourceName ;
+			sosa:isFeatureOfInterestOf ?tryObId .
+		?tryObId sosa:hasResult ?tryData .
+		?trySpName emi:inTaxon ?source_wdx . # wikidata-ids wdx for trySpName
+		?tryData rdfs:label ?traitLabel ;
+			rdf:type emi:Trait ; #retrieve data which is labelled as 'Trait' and its values
+			rdf:value ?tryDataVal ;
+			qudt:hasUnit ?unit . #retrieve units for Trait data
+		OPTIONAL {
+			?tryData rdfs:comment ?unitComment .
+		} #retrieve comments (containing original unprocessed unit information - necessary for understanding some data) for Trait data
+  		# retrieve trait labels
+		BIND (
+			IF(REGEX(STR(?traitLabel),""SLA"",""i""),""Specific leaf area"",
+			IF(REGEX(STR(?traitLabel),""leaf dry matter content"",""i""),""Leaf dry matter content"",
+			IF(REGEX(STR(?traitLabel),""leaf nitrogen content"",""i""),""Leaf nitrogen content"",
+			IF(REGEX(STR(?traitLabel),""leaf phosphorus content"",""i""),""Leaf phosphorus content"",
+			""Other"")))) AS ?traitCategory)
+			
+  		# filter to LES categories only
+  		FILTER (?traitCategory != ""Other"")
+	}
+	# group results and retain only the ones from organisms with all four traits available 
+	GROUP BY ?source_wdx ?sourceName ?traitCategory ?traitLabel ?tryDataVal ?unit ?unitComment
+	HAVING (COUNT(?traitCategory) = 4)
+	# order by organism and trait names
+	ORDER BY ?source_wdx ?traitCategory","","~"
+"23","69","Retrieve metabolites of organisms with data available from 4 traits in leaf economics spectrum.","PREFIX emi: <https://w3id.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?structure_inchikey ?wd_chem ?source_wdx ?sourceName  WHERE
+	{
+		# trait data
+
+		# trait/non-trait data for trySpName (scientific name of plant species as listed in trydb)
+		?trySpObs sosa:isSampleOf ?trySpName ;
+			rdfs:label ?sourceName ;
+			sosa:isFeatureOfInterestOf ?tryObId .
+		?tryObId sosa:hasResult ?tryData .
+		?trySpName emi:inTaxon ?source_wdx . # wikidata-ids wdx for trySpName
+		?tryData rdfs:label ?traitLabel ;
+			rdf:type emi:Trait ; #retrieve data which is labelled as 'Trait' and its values
+
+		# retrieve trait labels
+		BIND (
+        		IF (REGEX(STR(?traitLabel), ""SLA"", ""i""), ""Specific leaf area"",
+    			IF (REGEX(STR(?traitLabel), ""leaf dry matter content"", ""i""), ""Leaf dry matter content"",
+	    		IF (REGEX(STR(?traitLabel), ""leaf nitrogen content"", ""i""), ""Leaf nitrogen content"",
+    			IF (REGEX(STR(?traitLabel), ""leaf phosphorus content"", ""i""), ""Leaf phosphorus content"",
+    			""Other"")))) AS ?traitCategory
+  		)
+
+		# filter to LES categories only
+	  	FILTER (?traitCategory != ""Other"")
+
+		# metabolite data
+		{
+			SELECT ?source_wdx ?structure_inchikey ?wd_chem WHERE {
+				?material sosa:hasSample ?extract ;
+		        		sosa:isSampleOf ?organe .
+				?organe emi:inTaxon ?source_wdx . # filter metabolite data which is found in wikidata-ids wdx
+				?extract sosa:isFeatureOfInterestOf ?lcms .
+			    	?lcms sosa:hasResult ?feature_list .
+				?feature_list emi:hasLCMSFeature ?feature .
+				?feature emi:hasAnnotation ?sirius_annotation .
+				?sirius_annotation a emi:StructuralAnnotation ;
+					emi:hasChemicalStructure ?ik2d .
+				?ik2d emi:hasSMILES ?smiles ;
+		    			emi:isInChIKey2DOf ?structure_inchikey .
+				?structure_inchikey emi:isInChIKeyOf ?wd_chem .	# wikidata-ids for metabolites
+			} LIMIT 100
+		}
+		UNION # union with data from lotus (integrated in wikidata)
+		{
+			SERVICE <https://qlever.dev/api/wikidata> {
+				?wd_chem wdt:P235 ?structure_inchikey;
+	   				wdt:P703 ?source_wdx .
+			}
+		}
+	}
+
+	# group results and retain only the ones from organisms with all four traits available
+	GROUP BY ?source_wdx ?sourceName ?traitCategory ?structure_inchikey ?wd_chem
+	HAVING(COUNT(?traitCategory) = 4)
+
+	# order by organism and trait names
+	ORDER BY ?source_wdx ?traitCategory","","~"
