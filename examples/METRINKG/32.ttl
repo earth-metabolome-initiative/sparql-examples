@@ -6,7 +6,7 @@
 
 ex:32 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
-    rdfs:comment "Unique Wikidata identifiers mapped to GloBI taxons."@en ;
+    rdfs:comment "Metrics for GloBI records (total number of interactions) for only those taxons that possess a Wikidata ID ."@en ;
     sh:prefixes _:sparql_examples_prefixes ;
     sh:select """PREFIX emi: <https://w3id.org/emi#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
