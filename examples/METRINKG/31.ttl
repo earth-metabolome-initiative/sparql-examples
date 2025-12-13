@@ -1,0 +1,32 @@
+@prefix ex: <https://kg.earthmetabolome.org/metrin/api/.well-known/examples/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
+
+ex:31 a sh:SPARQLExecutable,
+        sh:SPARQLSelectExecutable ;
+    rdfs:comment "Unique Wikidata identifiers mapped to GloBI taxons."@en ;
+    sh:prefixes _:sparql_examples_prefixes ;
+    sh:select """PREFIX emi: <https://w3id.org/emi#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(DISTINCT ?wdx) AS ?totalDistinctTaxa) 
+WHERE {
+  ?intxn emi:hasSource ?source ;
+         emi:hasTarget ?target ;
+         emi:isClassifiedWith ?intxnType .
+  ?intxnType rdfs:label ?intxnLabel .
+  ?source emi:inTaxon ?wdx_Source ;
+          rdfs:label ?sourceName .
+  ?target emi:inTaxon ?wdx_Target ;
+          rdfs:label ?targetName .
+  # merge sources and targets into a single ?wdx variable
+  {
+    ?source emi:inTaxon ?wdx
+  }
+  UNION {
+    ?target emi:inTaxon ?wdx
+  }
+}""" ;
+    schema:target <https://kg.earthmetabolome.org/metrin/api/> .
