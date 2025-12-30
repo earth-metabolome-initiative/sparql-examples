@@ -145,7 +145,7 @@ python scripts/ttl_to_csv.py examples/METRINKG -o outputs/metrinkg_examples.csv
 
 ## NOTES 
 
-Apparently the `spaqrl-example-utils` are shipped with log config set to true. To be investigated.
+Apparently the `sparql-example-utils` are shipped with log config set to true. To be investigated.
 For now, we create the [[log4j.properties]] and can run 
 
 ```bash
@@ -154,6 +154,17 @@ java -Dlog4j.configuration=file:./log4j.properties \
   convert --input-directory=../sparql-examples/examples -p METRINKG -f ttl > test.ttl
 ```
 
+It is possible to retrieve all example queries using:
+
+```sql
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?sq ?comment ?query
+WHERE {
+    ?sq a sh:SPARQLExecutable ;
+        rdfs:comment ?comment ;
+        sh:select|sh:ask|sh:construct|sh:describe ?query .
+} ORDER BY ?sq
 
 
 ## How to cite this work
