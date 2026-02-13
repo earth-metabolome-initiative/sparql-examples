@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:32 a sh:SPARQLExecutable,
+ex:metrics_3 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Metrics for GloBI records (total number of interactions) for only those taxons that possess a Wikidata ID ."@en ;
     sh:prefixes _:sparql_examples_prefixes ;

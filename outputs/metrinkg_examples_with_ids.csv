@@ -951,3 +951,59 @@ SELECT DISTINCT ?structure_inchikey ?wd_chem ?source_wdx ?sourceName  WHERE
 
 	# order by organism and trait names
 	ORDER BY ?source_wdx ?traitCategory","","~"
+"","69","ex:metrics_1 Metrics for retrieving TRY species, trait and non-trait records.","PREFIX emi: <https://w3id.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT 
+  (COUNT(DISTINCT ?trySpName) AS ?speciesCount)
+  (COUNT(DISTINCT ?traitData) AS ?traitCount)
+  (COUNT(DISTINCT ?nonTraitData) AS ?nonTraitCount)
+WHERE {
+  ?trySpName emi:inTaxon ?wdx .						
+  ?trySpObs sosa:isSampleOf ?trySpName ;
+            sosa:isFeatureOfInterestOf ?tryObId .
+  ?tryObId sosa:hasResult ?tryData .
+  ?tryData rdfs:label ?tryDataLab ;
+           rdf:value ?tryDataVal .
+
+  # separate trait vs. non-trait
+  OPTIONAL { ?tryData rdf:type emi:Trait     . BIND(?tryData AS ?traitData) }
+  OPTIONAL { ?tryData rdf:type emi:NonTrait  . BIND(?tryData AS ?nonTraitData) }
+}","","~"
+"","69","ex:metrics_2 Unique Wikidata identifiers mapped to GloBI taxons.","PREFIX emi: <https://w3id.org/emi#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(DISTINCT ?wdx) AS ?totalDistinctTaxa) 
+WHERE {
+  ?intxn emi:hasSource ?source ;
+         emi:hasTarget ?target ;
+         emi:isClassifiedWith ?intxnType .
+  ?intxnType rdfs:label ?intxnLabel .
+  ?source emi:inTaxon ?wdx_Source ;
+          rdfs:label ?sourceName .
+  ?target emi:inTaxon ?wdx_Target ;
+          rdfs:label ?targetName .
+  # merge sources and targets into a single ?wdx variable
+  {
+    ?source emi:inTaxon ?wdx
+  }
+  UNION {
+    ?target emi:inTaxon ?wdx
+  }
+}","","~"
+"","69","ex:metrics_3 Metrics for GloBI records (total number of interactions) for only those taxons that possess a Wikidata ID .","PREFIX emi: <https://w3id.org/emi#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(*) AS ?rowCount) 
+WHERE {
+  ?intxn emi:hasSource ?source ;
+         emi:hasTarget ?target ;
+         emi:isClassifiedWith ?intxnType .
+  ?intxnType rdfs:label ?intxnLabel .
+  ?source emi:inTaxon ?wdx_Source ;
+          rdfs:label ?sourceName .
+  ?target emi:inTaxon ?wdx_Target ;
+          rdfs:label ?targetName .
+}","","~"

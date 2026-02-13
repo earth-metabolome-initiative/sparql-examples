@@ -4,7 +4,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix spex:<https://purl.expasy.org/sparql-examples/ontology#> .
 
-ex:30 a sh:SPARQLExecutable,
+ex:metrics_1 a sh:SPARQLExecutable,
         sh:SPARQLSelectExecutable ;
     rdfs:comment "Metrics for retrieving TRY species, trait and non-trait records."@en ;
     sh:prefixes _:sparql_examples_prefixes ;
