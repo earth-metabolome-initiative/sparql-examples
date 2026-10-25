@@ -22,7 +22,7 @@ concurrency:
 jobs:
   publish_html:
     name: "publish html"
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-26.04 
     steps: 
     - uses: actions/checkout@v7
     
@@ -58,7 +58,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     needs: publish_html
     steps:
       - name: Deploy to GitHub Pages

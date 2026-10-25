@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   add_example:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     if: >
       contains(github.event.issue.labels.*.name, 'add-example') ||
       (github.event.action == 'labeled' && github.event.label.name == 'add-example')
